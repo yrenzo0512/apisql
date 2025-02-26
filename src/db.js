@@ -1,13 +1,16 @@
-import pg from 'pg';
-import { DB_DATABASE, DB_HOST, DB_PASSWORD, DB_PORT, DB_USER } from './config.js'
+import pg from "pg";
+import dotenv from "dotenv";
 
-export const pool = new pg.Pool({
-    allowExitOnIdle: true,
-    user: DB_USER,
-    host: DB_HOST,
-    password: DB_PASSWORD,
-    database: DB_DATABASE,
-    port: DB_PORT
+const {Pool} = pg;
+dotenv.config();
+
+const pool = new Pool({
+    connectionString: process.env.DATABASE_URL,
+    ssl: { rejectUnauthorized: false }
 });
+
+export default pool; // ✅ Exportar con "export default"
+
+
 
 

@@ -1,4 +1,4 @@
-import { pool } from "../db.js";
+import pool from "../db.js"; // ✅ Importación sin destructuring
 
 export const getUsers = async (req, res) => {
     try {
